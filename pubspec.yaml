@@ -1,0 +1,12 @@
+name: emitter
+description: A simple event emitter mixins
+version: 1.0.1
+author: Lucas <me@dotronglong.com>
+homepage: https://github.com/dotronglong/dart-emitter
+
+environment:
+  sdk: '>=2.0.0 <3.0.0'
+
+dev_dependencies:
+  test: ^1.3.4
+  coveralls: ^5.1.0
