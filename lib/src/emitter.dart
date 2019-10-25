@@ -1,4 +1,5 @@
-part of emitter;
+import 'cancellable.dart';
+import 'listener.dart';
 
 class EventEmitter {
   Map<String, List<EventListener>> _listeners = Map();

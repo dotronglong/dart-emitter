@@ -1,4 +1,4 @@
-part of emitter;
+import 'cancellable.dart';
 
 mixin Event implements EventCancellable {
   bool _isCancelled = false;

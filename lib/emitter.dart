@@ -1,9 +1,6 @@
 library emitter;
 
-part 'src/cancellable.dart';
-
-part 'src/emitter.dart';
-
-part 'src/event.dart';
-
-part 'src/listener.dart';
+export 'src/cancellable.dart';
+export 'src/emitter.dart';
+export 'src/event.dart';
+export 'src/listener.dart';
