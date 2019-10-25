@@ -1,6 +1,6 @@
 name: emitter
 description: A simple event emitter mixins
-version: 1.0.3
+version: 1.0.4
 author: Lucas <me@dotronglong.com>
 homepage: https://github.com/dotronglong/dart-emitter
 
