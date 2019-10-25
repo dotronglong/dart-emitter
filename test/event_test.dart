@@ -1,7 +1,7 @@
 import 'package:emitter/emitter.dart';
 import 'package:test/test.dart';
 
-class DummyEvent with Event {}
+class DummyEvent with CancelledEvent, ParameterizedEvent {}
 
 void main() {
   test('cancellable: can cancel', () {

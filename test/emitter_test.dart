@@ -1,7 +1,7 @@
 import 'package:emitter/emitter.dart';
 import 'package:test/test.dart';
 
-class DummyEvent with Event {
+class DummyEvent with CancelledEvent, SynchronizedEvent {
   int count = 0;
 }
 
@@ -19,38 +19,42 @@ void main() {
     emitter.off(name);
   });
 
-  test('emit: can emit event', () {
+  test('emit: can emit event', () async {
     var emitter = EventEmitter();
     emitter.on(name, (event) {
       if (event is DummyEvent) {
         event.count++;
       }
+      return;
     });
     emitter.on(name, (event) {
       if (event is DummyEvent) {
         event.count++;
       }
+      return;
     });
     DummyEvent event = DummyEvent();
-    emitter.emit(name, event);
+    await emitter.emit(name, event);
     expect(event.count, 2);
   });
 
-  test('cancellable: can cancel event', () {
+  test('cancellable: can cancel event', () async {
     var emitter = EventEmitter();
     emitter.on(name, (event) {
       if (event is DummyEvent) {
         event.count++;
         event.cancel();
       }
+      return;
     });
     emitter.on(name, (event) {
       if (event is DummyEvent) {
         event.count++;
       }
+      return;
     });
     DummyEvent event = DummyEvent();
-    emitter.emit(name, event);
+    await emitter.emit(name, event);
     expect(event.count, 1);
   });
 }

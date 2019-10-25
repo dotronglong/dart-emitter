@@ -1,18 +1,22 @@
 import 'cancellable.dart';
+import 'synchronizable.dart';
 
-mixin Event implements EventCancellable {
+mixin CancelledEvent implements EventCancellable {
   bool _isCancelled = false;
-  Map<String, dynamic> _data = Map();
 
-  void cancel() {
-    this._isCancelled = true;
-  }
+  void cancel() => this._isCancelled = true;
 
-  bool isCancelled() {
-    return this._isCancelled;
-  }
+  bool isCancelled() => this._isCancelled;
+}
 
-  dynamic get(String key) => this._data[key];
+mixin SynchronizedEvent implements EventSynchronizable {
+  bool isSynchronized() => true;
+}
 
-  void set(String key, dynamic value) => this._data[key] = value;
+mixin ParameterizedEvent {
+  Map<String, dynamic> _parameters = Map();
+
+  dynamic get(String key) => this._parameters[key];
+
+  void set(String key, dynamic value) => this._parameters[key] = value;
 }
