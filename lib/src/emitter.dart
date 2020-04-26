@@ -5,7 +5,11 @@ import 'listener.dart';
 import 'synchronizable.dart';
 
 class EventEmitter {
-  Map<String, List<EventListener>> _listeners = Map();
+  static EventEmitter instance = EventEmitter();
+  final Map<String, List<EventListener>> _listeners;
+
+  EventEmitter([Map<String, List<EventListener>> listeners])
+      : _listeners = listeners ?? Map();
 
   void on(String name, EventListener listener) {
     if (this._listeners.containsKey(name)) {
