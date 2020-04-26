@@ -57,4 +57,34 @@ void main() {
     await emitter.emit(name, event);
     expect(event.count, 1);
   });
+
+  test('limited listener: listener only listen once', () async {
+    var emitter = EventEmitter();
+    emitter.once(name, (event) {
+      if (event is DummyEvent) {
+        event.count++;
+      }
+      return;
+    });
+    DummyEvent event = DummyEvent();
+    await emitter.emit(name, event);
+    await emitter.emit(name, event);
+    expect(event.count, 1);
+  });
+
+  test('limited listener: listener only listen n times', () async {
+    var emitter = EventEmitter();
+    emitter.on(name, (event) {
+      if (event is DummyEvent) {
+        event.count++;
+      }
+      return;
+    }, limit: 3);
+    DummyEvent event = DummyEvent();
+    await emitter.emit(name, event);
+    await emitter.emit(name, event);
+    await emitter.emit(name, event);
+    await emitter.emit(name, event);
+    expect(event.count, 3);
+  });
 }

@@ -14,3 +14,4 @@ doc/api/
 
 # IDEs
 .idea/
+.vscode/
